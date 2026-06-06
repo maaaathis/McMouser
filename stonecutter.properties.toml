@@ -1,0 +1,14 @@
+# Centralized properties — see https://stonecutter.kikugie.dev/wiki/config/properties
+mod.id = "macmc"
+mod.name = "MacMc"
+mod.group = "de.mathis.macmc"
+mod.version = "1.0.0"
+
+deps.fabric_loader = "0.17.3"
+loomx.loom_version = "1.16-SNAPSHOT"
+
+["1.16.5"]
+mod.mc_compat = ">=1.16.5"
+
+["1.21.9"]
+mod.mc_compat = "1.21.9"

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "A Fabric mod that fixes common macOS input issues in Minecraft.",
+  "authors": [
+    "Mathis"
+  ],
+  "contributors": [
+    "ViRb3 (original McMouser)"
+  ],
+  "contact": {},
+  "license": "All rights reserved",
+  "icon": "assets/macmc/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "de.mathis.macmc.client.MacmcClient"
+    ]
+  },
+  "mixins": [
+    "macmc.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "${minecraft}"
+  }
+}

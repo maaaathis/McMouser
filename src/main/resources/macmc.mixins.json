@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "de.mathis.macmc.client.mixin",
+  "compatibilityLevel": "${java}",
+  "client": [
+    "MixinMouse",
+    "AccessorKeyboardHandler",
+    "MixinKeyboardHandler",
+    "MixinMinecraft"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
