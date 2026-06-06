@@ -50,3 +50,27 @@ jar {
         rename { "${it}_${mod_name}" }
     }
 }
+
+// Rebuilds the native macOS keyboard fix (src/main/native/mcmouser.mm) into a
+// universal dylib under src/main/resources. Only runs on macOS; the resulting
+// binary is committed so the (Linux) CI build can bundle it without a toolchain.
+// Run manually after changing the native source: ./gradlew compileNatives
+tasks.register('compileNatives', Exec) {
+    onlyIf { org.gradle.internal.os.OperatingSystem.current().isMacOsX() }
+
+    def nativeSrc = file('src/main/native/mcmouser.mm')
+    def nativeOut = file('src/main/resources/natives/mcmouser.dylib')
+    def javaHome = System.getenv('JAVA_HOME') ?: System.getProperty('java.home')
+
+    inputs.file nativeSrc
+    outputs.file nativeOut
+
+    doFirst { nativeOut.parentFile.mkdirs() }
+
+    commandLine 'clang++', '-dynamiclib', '-std=c++17',
+            '-mmacosx-version-min=11.0',
+            '-arch', 'arm64', '-arch', 'x86_64',
+            "-I${javaHome}/include", "-I${javaHome}/include/darwin",
+            '-framework', 'Cocoa',
+            '-o', nativeOut.absolutePath, nativeSrc.absolutePath
+}

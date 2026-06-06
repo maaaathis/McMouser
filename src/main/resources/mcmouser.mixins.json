@@ -4,6 +4,9 @@
   "package": "me.virb3.mcmouser.client.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "AccessorKeyboardHandler",
+    "MixinKeyboardHandler",
+    "MixinMinecraft",
     "MixinMouse"
   ],
   "injectors": {
